@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/poke-search/",
+  base: "./",
   build: {
     outDir: "docs",
     emptyOutDir: true,
