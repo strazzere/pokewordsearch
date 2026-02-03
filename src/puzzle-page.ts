@@ -1,5 +1,6 @@
 import type { PokemonData } from "./pokemon-api";
 import type { WordSearchResult } from "./word-search";
+import { escapeHtml } from "./escape-html";
 
 function renderGrid(grid: string[][]): string {
   return grid
@@ -32,16 +33,16 @@ export function renderPuzzle(
         <button id="back-btn">Back</button>
         <button id="print-btn">Print</button>
       </div>
-      <h1 class="puzzle-title">${displayName}</h1>
+      <h1 class="puzzle-title">${escapeHtml(displayName)}</h1>
       <div class="puzzle-layout">
         <div class="puzzle-sidebar">
           <div class="pokemon-image">
-            ${pokemon.artworkUrl ? `<img src="${pokemon.artworkUrl}" alt="${pokemon.name}" />` : ""}
+            ${pokemon.artworkUrl ? `<img src="${escapeHtml(pokemon.artworkUrl)}" alt="${escapeHtml(pokemon.name)}" />` : ""}
           </div>
           <div class="word-list">
             <h2>Words to Find</h2>
             <ul>
-              ${puzzle.words.map((w) => `<li>${w}</li>`).join("\n              ")}
+              ${puzzle.words.map((w) => `<li>${escapeHtml(w)}</li>`).join("\n              ")}
             </ul>
           </div>
           <div class="solution-section">

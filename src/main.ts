@@ -1,4 +1,5 @@
 import { fetchPokemonList, fetchPokemon, type PokemonListEntry } from "./pokemon-api";
+import { escapeHtml } from "./escape-html";
 import { generateWordSearch } from "./word-search";
 import { renderPuzzle } from "./puzzle-page";
 import "./styles.css";
@@ -49,7 +50,7 @@ function onInput() {
   autocompleteList.innerHTML = matches
     .map(
       (p, i) =>
-        `<li data-name="${p.name}" class="${i === selectedIndex ? "selected" : ""}">${p.name}</li>`
+        `<li data-name="${escapeHtml(p.name)}" class="${i === selectedIndex ? "selected" : ""}">${escapeHtml(p.name)}</li>`
     )
     .join("");
 
