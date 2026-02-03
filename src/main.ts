@@ -95,11 +95,15 @@ async function selectPokemon(name: string) {
   await loadPuzzle(name);
 }
 
-function onRandom() {
+function loadRandomPuzzle() {
   if (!pokemonList.length) return;
   const random = pokemonList[Math.floor(Math.random() * pokemonList.length)];
   input.value = random.name;
   loadPuzzle(random.name);
+}
+
+function onRandom() {
+  loadRandomPuzzle();
 }
 
 async function loadPuzzle(nameOrId: string) {
@@ -113,7 +117,7 @@ async function loadPuzzle(nameOrId: string) {
 
     landing.classList.add("hidden");
     puzzleContainer.classList.remove("hidden");
-    renderPuzzle(puzzleContainer, pokemon, puzzle);
+    renderPuzzle(puzzleContainer, pokemon, puzzle, loadRandomPuzzle);
   } catch (err) {
     alert(`Failed to load Pokemon: ${err instanceof Error ? err.message : err}`);
   } finally {

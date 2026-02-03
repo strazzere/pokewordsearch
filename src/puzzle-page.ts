@@ -14,7 +14,8 @@ function renderGrid(grid: string[][]): string {
 export function renderPuzzle(
   container: HTMLElement,
   pokemon: PokemonData,
-  puzzle: WordSearchResult
+  puzzle: WordSearchResult,
+  onRandom?: () => void
 ): void {
   const displayName = pokemon.name.toUpperCase().replace(/-/g, " ");
 
@@ -31,6 +32,7 @@ export function renderPuzzle(
          style="--cell-size: ${cellSize}px; --grid-font: ${fontSize}rem; --print-cell: ${printCellSize}px; --print-font: ${printFontSize}rem; --sol-cell: ${solutionCellSize}px; --sol-font: ${solutionFontSize}rem;">
       <div class="no-print controls">
         <button id="back-btn">Back</button>
+        <button id="random-puzzle-btn">Random</button>
         <button id="print-btn">Print</button>
       </div>
       <h1 class="puzzle-title">${escapeHtml(displayName)}</h1>
@@ -67,6 +69,10 @@ export function renderPuzzle(
     container.classList.add("hidden");
     container.innerHTML = "";
     document.getElementById("landing")!.classList.remove("hidden");
+  });
+
+  container.querySelector("#random-puzzle-btn")?.addEventListener("click", () => {
+    if (onRandom) onRandom();
   });
 
   container.querySelector("#print-btn")?.addEventListener("click", () => {
