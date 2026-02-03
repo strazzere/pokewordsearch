@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Landing Page */
+#landing {
+  max-width: 480px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 0 16px;
+}
+
+#landing h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+#landing p {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.search-container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+#pokemon-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+#pokemon-input:focus {
+  border-color: #e3350d;
+}
+
+#autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+#autocomplete-list:empty {
+  display: none;
+}
+
+#autocomplete-list li {
+  padding: 10px 16px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+#autocomplete-list li:hover,
+#autocomplete-list li.selected {
+  background: #e3350d;
+  color: #fff;
+}
+
+#random-btn {
+  padding: 12px 32px;
+  font-size: 1rem;
+  background: #e3350d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#random-btn:hover {
+  background: #c42e0b;
+}
+
+#random-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#loading {
+  margin-top: 16px;
+  font-size: 1.1rem;
+  color: #888;
+}
+
+.error {
+  color: #e3350d;
+  margin-top: 16px;
+}
+
+/* Puzzle Page */
+.puzzle-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.controls button {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  border: 2px solid #333;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: #333;
+  color: #fff;
+}
+
+.puzzle-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 16px;
+  text-transform: capitalize;
+}
+
+.puzzle-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.puzzle-sidebar {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pokemon-image img {
+  width: 100%;
+  max-width: 200px;
+  image-rendering: pixelated;
+}
+
+.word-list h2 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 4px;
+}
+
+.word-list ul {
+  list-style: none;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.puzzle-grid-container {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.puzzle-grid {
+  border-collapse: collapse;
+  font-family: "Courier New", Courier, monospace;
+  font-size: var(--grid-font, 1.1rem);
+  line-height: 1;
+  margin: 0 auto;
+}
+
+.puzzle-grid td {
+  width: var(--cell-size, 28px);
+  height: var(--cell-size, 28px);
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+/* Solution key */
+.solution-section {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.solution-flip {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+.solution-label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.solution-grid td {
+  width: var(--sol-cell, 12px);
+  height: var(--sol-cell, 12px);
+  font-size: var(--sol-font, 0.5rem);
+  border-color: #ccc;
+  font-weight: normal;
+  color: #555;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .puzzle-page {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .puzzle-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .puzzle-layout {
+    gap: 16px;
+  }
+
+  .puzzle-sidebar {
+    flex: 0 0 150px;
+  }
+
+  .pokemon-image img {
+    max-width: 150px;
+  }
+
+  .word-list ul {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .puzzle-grid {
+    font-size: var(--print-font, 0.85rem);
+  }
+
+  .puzzle-grid td {
+    width: var(--print-cell, 22px);
+    height: var(--print-cell, 22px);
+    border-color: #999;
+  }
+
+  .solution-section {
+    margin-top: 16px;
+  }
+
+  .solution-grid td {
+    width: var(--sol-cell, 10px);
+    height: var(--sol-cell, 10px);
+    font-size: var(--sol-font, 0.4rem);
+    border-color: #bbb;
+    color: #333;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+}
